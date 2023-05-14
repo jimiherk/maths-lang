@@ -9,6 +9,11 @@ use evaluator::Evaluator;
 use parser::Node;
 
 fn main() {
+    let expr = "";
+    println!("{} = {}", expr, calculate(expr));
+}
+
+fn calculate(expr: &str) -> f64 {
     let tokenizer = Tokenizer::new(expr.to_string());
     let mut parser = Parser::new(tokenizer);
     let evaluator = Evaluator;
@@ -16,7 +21,7 @@ fn main() {
     let ast = parser.parse_expression();
     let result = evaluator.evaluate(ast);
     if let Node::Number(n) = result {
-        println!("{}", n);
+        n
     } else {
         panic!("Invalid result");
     }
